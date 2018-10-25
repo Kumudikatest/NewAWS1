@@ -6,7 +6,7 @@ const cognito_idp = new AWS.CognitoIdentityServiceProvider();
 exports.handler = function (event, context, callback) {
 
     s3.listObjects({
-        'Bucket': 'cf-templates-8j7s4hdepmkt-us-east-1',
+        'Bucket': 'com.sigma.test.318300609668.andunkannangara.us-east-1',
         'MaxKeys': 10,
         'Prefix': ''
     }).promise()

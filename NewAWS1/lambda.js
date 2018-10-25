@@ -1,17 +1,16 @@
 let AWS = require('aws-sdk');
+const ddb = new AWS.DynamoDB.DocumentClient();
 const cognito_idp = new AWS.CognitoIdentityServiceProvider();
 
 exports.handler = function (event, context, callback) {
-    cognito_idp.listUsers({
-        UserPoolId: "us-east-1_uVXTQInep",
-        Limit: "10"
-    }, function (error, data) {
-        if (error) {
-            // implement error handling logic here
-            throw error;
-        }
-        // your logic goes within this block
+    ddb.scan({
+        TableName: 'SwaggerDetails'
+    }).promise().then(function (data) {
+        //your logic goes here
+    }).catch(function (err) {
+        //handle error
     });
+
 
     callback(null, { "message": "Successfully executed" });
 }
